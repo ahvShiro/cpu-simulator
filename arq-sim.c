@@ -12,5 +12,8 @@ int main (int argc, char **argv)
 		exit(1);
 	}
 
+	char mem_buffer[100];
+	load_binary_to_memory(argv[0], mem_buffer, 100);
+
 	return 0;
 }
