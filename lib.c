@@ -34,11 +34,13 @@ void load_binary_to_memory (const char *fname, void *memory, const uint32_t mem_
 	fclose(fp);
 }
 
+
+
 int fsize(FILE * pf)
 {
-	fseek(pf, 0, SEEK_SET);
+	fseek(pf, 0, SEEK_END);
 	int size = ftell(pf);
-	fseek(pf, 0, SEEK_SET);
+	rewind(pf);
 	
 	return size;
 }
