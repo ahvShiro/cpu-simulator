@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 
 #include "lib.h"
@@ -33,4 +32,13 @@ void load_binary_to_memory (const char *fname, void *memory, const uint32_t mem_
 	}
 
 	fclose(fp);
+}
+
+int fsize(FILE * pf)
+{
+	fseek(pf, 0, SEEK_SET);
+	int size = ftell(pf);
+	fseek(pf, 0, SEEK_SET);
+	
+	return size;
 }
