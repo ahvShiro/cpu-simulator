@@ -24,15 +24,7 @@
 */
 
 
-int fsize(FILE * pf)
-{
-	
-	fseek(pf, 0, SEEK_SET);
-	int size = ftell(pf);
-	fseek(pf, 0, SEEK_SET);
-	
-	return size;
-}
+
 
 int main (int argc, char **argv)
 {
@@ -48,7 +40,7 @@ int main (int argc, char **argv)
 	// primeira coisa a fazer é saber o tamanho do arquivo
 
 	u_char mem_buffer[size];
-	
+
 	load_binary_to_memory(argv[1], mem_buffer, 100);
 	// a instrução inicia no indice 1 não 0 ou algo do tipo, eu tinha anotado mas esqueci
 
