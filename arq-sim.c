@@ -42,7 +42,8 @@ int main (int argc, char **argv)
 	u_char mem_buffer[size];
 
 	load_binary_to_memory(argv[1], mem_buffer, 100);
-	// a instrução inicia no indice 1 não 0 ou algo do tipo, eu tinha anotado mas esqueci
-
+	// a instrução inicia no índice 1 não 0 ou algo do tipo, eu tinha anotado mas esqueci
+	// depois dividir a memoria em substrings de 16 bits
+	// ler o primeiro bit para saber a formatação dos registradores e operandos
 	return 0;
 }
