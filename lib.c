@@ -36,11 +36,11 @@ void load_binary_to_memory (const char *fname, void *memory, const uint32_t mem_
 
 
 
-int fsize(FILE * pf)
+int fsize(FILE * fp)
 {
-	fseek(pf, 0, SEEK_END);
-	int size = ftell(pf);
-	rewind(pf);
+	fseek(fp, 0, SEEK_END);
+	int size = ftell(fp);
+	rewind(fp);
 	
 	return size;
 }

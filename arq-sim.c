@@ -28,6 +28,8 @@
 
 int main (int argc, char **argv)
 {
+	printf("%d\n", argc);
+
 	if (argc != 2) {
 		printf("usage: %s [bin_name]\n", argv[0]);
 		exit(1);
@@ -39,11 +41,14 @@ int main (int argc, char **argv)
 
 	// primeira coisa a fazer é saber o tamanho do arquivo
 
-	u_char mem_buffer[size];
+	char mem_buffer[size];
 
-	load_binary_to_memory(argv[1], mem_buffer, 100);
+	load_binary_to_memory(argv[1], mem_buffer, size);
 	// a instrução inicia no índice 1 não 0 ou algo do tipo, eu tinha anotado mas esqueci
 	// depois dividir a memoria em substrings de 16 bits
+	// usando o program counter, pode provavelmente mover o ponteiro par a próxima instrução
 	// ler o primeiro bit para saber a formatação dos registradores e operandos
+
+
 	return 0;
 }
