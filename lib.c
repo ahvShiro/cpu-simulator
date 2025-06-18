@@ -43,3 +43,11 @@ int fsize(FILE * fp)
 	
 	return size;
 }
+
+void print_memory(uint16_t *memory, uint32_t size)
+{
+	for (int i = 0; i < size; i++)
+    {
+        printf("Instrução %d: 0b%16b\n", i, memory[i]);
+    }
+}

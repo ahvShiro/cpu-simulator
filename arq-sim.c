@@ -31,16 +31,13 @@ int main(int argc, char **argv)
         exit(1);
     }
 
-    const uint16_t size = 100;
+    const uint16_t size = 200;
 
     uint16_t *memory = malloc(size); // CUIDADO: malloc usa metade do tamanho
 
     load_binary_to_memory(argv[1], memory, size);
 
-    for (int i = 0; i < size; i++)
-    {
-        printf("Instrução %d: 0b%16b\n", i, memory[i]);
-    }
+    print_memory(memory, size);
 
     free(memory);
 
