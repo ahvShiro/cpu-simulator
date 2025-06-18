@@ -41,6 +41,9 @@ int main(int argc, char **argv)
 
     free(memory);
 
+
+    printf("%016b\n", extract_bits(0x0005, 0, 16)); // aaaaa é assim que funciona
+
     // a instrução inicia no índice 1 não 0 ou algo do tipo, eu tinha anotado mas esqueci
     // depois dividir a memoria em substrings de 16 bits
     // usando o program counter, pode provavelmente mover o ponteiro par a próxima instrução

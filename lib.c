@@ -48,6 +48,6 @@ void print_memory(uint16_t *memory, uint32_t size)
 {
 	for (int i = 0; i < size; i++)
     {
-        printf("Instrução %d: 0b%16b\n", i, memory[i]);
+        printf("Instrução %d: 0b%016b\n", i, memory[i]);
     }
 }
