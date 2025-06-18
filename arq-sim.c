@@ -30,8 +30,10 @@ int main(int argc, char **argv)
         printf("usage: %s [bin_name]\n", argv[0]);
         exit(1);
     }
-
-    const uint16_t size = 200;
+    
+    FILE * fp = fopen(argv[1], "r");
+    uint16_t size = fsize(fp);
+    fclose(fp);
 
     uint16_t *memory = malloc(size); // CUIDADO: malloc usa metade do tamanho
 
