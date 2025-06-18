@@ -1,8 +1,11 @@
 #ifndef __HEADER_LIB_H__
 #define __HEADER_LIB_H__
 
-#include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <assert.h>
+
 
 void load_binary_to_memory (const char *fname, void *memory, const uint32_t mem_size);
 

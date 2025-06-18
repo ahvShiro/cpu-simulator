@@ -35,7 +35,6 @@ void load_binary_to_memory (const char *fname, void *memory, const uint32_t mem_
 }
 
 
-
 int fsize(FILE * fp)
 {
 	fseek(fp, 0, SEEK_END);
