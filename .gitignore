@@ -54,3 +54,4 @@ dkms.conf
 .gitignore
 *.bin
 /.idea
+arq-sim
