@@ -30,7 +30,9 @@ int main(int argc, char **argv)
         printf("usage: %s [bin_name]\n", argv[0]);
         exit(1);
     }
-    
+
+    RegFile rf;
+
     FILE * fp = fopen(argv[1], "r");
     uint16_t size = fsize(fp);
     fclose(fp);
