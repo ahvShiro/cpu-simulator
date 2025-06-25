@@ -4,10 +4,7 @@
 
 void load_binary_to_memory (const char *fname, void *memory, const uint32_t mem_size)
 {
-	FILE *fp;
-	uint32_t bsize;
-	
-	fp = fopen(fname, "rb");
+	FILE *fp = fopen(fname, "rb");
 
 	if (!fp) {
 		printf("cannot open file %s\n", fname);
@@ -15,7 +12,7 @@ void load_binary_to_memory (const char *fname, void *memory, const uint32_t mem_
 	}
 
 	fseek(fp, 0, SEEK_END);
-	bsize = ftell(fp);
+	const uint32_t bsize = ftell(fp);
 	
 	printf("file %s has %u bytes\n", fname, bsize);
 
@@ -35,16 +32,16 @@ void load_binary_to_memory (const char *fname, void *memory, const uint32_t mem_
 }
 
 
-int fsize(FILE * fp)
+int fsize(FILE *pf)
 {
-	fseek(fp, 0, SEEK_END);
-	int size = ftell(fp);
-	rewind(fp);
+	fseek(pf, 0, SEEK_END);
+	const long size = ftell(pf);
+	rewind(pf);
 	
 	return size;
 }
 
-void print_memory(uint16_t *memory, uint32_t size)
+void print_memory(const uint16_t *memory, uint32_t size)
 {
 	for (int i = 0; i < size; i++)
     {
