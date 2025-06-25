@@ -4,13 +4,8 @@
 #include "lib.h"
 
 typedef struct {
-    uint8_t name;
-    uint16_t value;
-
-} Reg;
-
-typedef struct {
-    Reg pc;
+    uint16_t pc;
+    uint16_t r1;
 } RegFile;
 
 #endif
