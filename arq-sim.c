@@ -1,7 +1,7 @@
 
 
 #include "lib.h"
-#include <stdint.h>
+#include "reg.h"
 
 /*
  * FORMATAÇÃO DA INSTRUÇÃO:
