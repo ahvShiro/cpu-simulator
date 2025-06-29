@@ -3,7 +3,7 @@
 
 #include "lib.h"
 
-uint16_t instruction[16];
+uint16_t instruction[2];
 
 
 
