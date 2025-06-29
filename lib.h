@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <assert.h>
+#include <string.h>
 
 #define LENGTH(a) (sizeof(a) / sizeof((a)[0]))
 
