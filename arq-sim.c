@@ -1,6 +1,8 @@
 // SIMULADOR DE PROCESSADOR
 
 #include "lib.h"
+#include "fetch.h"
+#include "reg.h"
 
 /*
  * FORMATAÇÃO DA INSTRUÇÃO:
@@ -34,11 +36,15 @@ int main(int argc, char **argv)
     uint16_t size = fsize(fp);
     fclose(fp);
 
+    RegFile rf = start_reg_file();
+
     uint16_t *memory = malloc(size * sizeof(uint16_t)); // malloc usa metade do tamanho
 
     load_binary_to_memory(argv[1], memory, size);
 
-    print_memory(memory, size);
+    uint16_t * ins = get_next_instruction(memory);
+
+    print_memory(ins, rf.pc);
 
     free(memory);
 

@@ -2,7 +2,10 @@
 #include "fetch.h"
 #include "reg.h"
 
-uint16_t * get_next_instruction(uint16_t *memory){
+uint16_t instruction[2];
+
+uint16_t * get_next_instruction(uint16_t * memory)
+{
     memcpy(instruction, memory, sizeof(instruction));
     return instruction;
 }

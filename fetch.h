@@ -3,8 +3,6 @@
 
 #include "lib.h"
 
-uint16_t instruction[2];
-
-
+uint16_t * get_next_instruction(uint16_t * memory);
 
 #endif
