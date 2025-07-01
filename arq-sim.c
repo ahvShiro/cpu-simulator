@@ -42,13 +42,18 @@ int main(int argc, char **argv)
 
     load_binary_to_memory(argv[1], memory, size);
 
-    uint16_t * ins = get_next_instruction(memory);
+    print_memory_all(memory, size);
 
-    print_memory(ins, rf.pc);
-
+    for (rf.pc += 0; rf.pc < size; rf.pc++)
+    {
+        uint16_t * ins = get_next_instruction(&memory[rf.pc]);
+        printf("pc: %d\n", rf.pc);
+        print_memory(ins, rf.pc);
+        *memory += sizeof(uint16_t);
+    }
+    
     free(memory);
 
-    // a instrução inicia no índice 1 não 0 ou algo do tipo, eu tinha anotado, mas esqueci
     // depois dividir a memória em substrings de 16 bits
     // usando o program counter, pode provavelmente mover o ponteiro par a próxima instrução
     // ler o primeiro bit para saber a formatação dos registradores e operandos

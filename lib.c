@@ -17,7 +17,7 @@ void load_binary_to_memory (const char *fname, void *memory, const uint32_t mem_
 	printf("file %s has %u bytes\n", fname, bsize);
 
 	if (bsize > mem_size) {
-		printf("error!\nMax file fize must be 0x0000FFFF\n");
+		printf("error!\nMax file size must be 0x0000FFFF\n");
 		exit(1);
 	}
 
@@ -41,7 +41,12 @@ int fsize(FILE *pf)
 	return size;
 }
 
-void print_memory(const uint16_t *memory, uint32_t size)
+void print_memory(const uint16_t *memory, uint32_t index)
+{
+    printf("Instrução %d: 0b%016b\n", index, memory[index]);
+}
+
+void print_memory_all (const uint16_t *memory, uint32_t size)
 {
 	for (int i = 0; i < size; i++)
     {
