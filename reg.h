@@ -9,4 +9,7 @@ typedef struct {
     uint8_t r2;
 } RegFile;
 
+RegFile start_reg_file();
+
+
 #endif

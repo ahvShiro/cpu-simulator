@@ -50,6 +50,8 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# files generate by gcc or IDEs
 /.vscode
 .gitignore
 *.bin
