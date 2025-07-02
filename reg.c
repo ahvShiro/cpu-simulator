@@ -4,7 +4,7 @@
 RegFile start_reg_file()
 {
     RegFile regF;
-    regF.pc = 0;
+    regF.pc = 1;
     regF.r1 = 0;
     regF.r2 = 0;
     return regF;

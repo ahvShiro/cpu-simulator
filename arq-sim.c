@@ -24,7 +24,6 @@
 
 int main(int argc, char **argv)
 {
-    printf("%d\n", argc);
 
     if (argc != 2)
     {
@@ -42,15 +41,28 @@ int main(int argc, char **argv)
 
     load_binary_to_memory(argv[1], memory, size);
 
-    print_memory_all(memory, size);
+    // print_memory_all(memory, size);
 
+    
+    for (size_t i = 0; i < size; i++)
+    {
+        // printf("%016b\n", instruction);
+        uint16_t instruction = extract_bits(memory[rf.pc], 0, 16);
+        printf("0b%016b\n", instruction);
+        rf.pc++;
+    }
+
+    
+
+    /*
     for (rf.pc += 0; rf.pc < size; rf.pc++)
     {
         uint16_t * ins = get_next_instruction(&memory[rf.pc]);
         printf("pc: %d\n", rf.pc);
+        printf("Instrução %d: 0b%016b\n", rf.pc, memory[rf.pc]);
         print_memory(ins, rf.pc);
         *memory += sizeof(uint16_t);
-    }
+    } */
     
     free(memory);
 
