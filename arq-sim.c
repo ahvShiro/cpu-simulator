@@ -1,7 +1,6 @@
 // SIMULADOR DE PROCESSADOR
 
 #include "lib.h"
-#include "fetch.h"
 #include "reg.h"
 
 /*
@@ -48,12 +47,12 @@ int main(int argc, char **argv)
         rf.pc++;
         int firstbit = extract_bits(instruction, 15, 16);
 
-        if(fristbit){
+        if(firstbit){
             // 1
-            printf("I")
+            printf("I");
         } else {
             // 0
-            printf("R")
+            printf("R");
         }
         printf("%d\n", firstbit);
 
