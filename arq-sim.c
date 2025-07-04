@@ -46,13 +46,22 @@ int main(int argc, char **argv)
         uint16_t instruction = extract_bits(memory[rf.pc], 0, 16);
         printf("0b%016b\n", instruction);
         rf.pc++;
+        int firstbit = extract_bits(instruction, 15, 16);
+
+        if(fristbit){
+            // 1
+            printf("I")
+        } else {
+            // 0
+            printf("R")
+        }
+        printf("%d\n", firstbit);
+
     }
     
+    // 0001
+    // >> 3
     free(memory);
-
-    // depois dividir a memória em substrings de 16 bits
-    // usando o program counter, pode provavelmente mover o ponteiro par a próxima instrução
     // ler o primeiro bit para saber a formatação dos registradores e operandos
-
     return 0;
 }
