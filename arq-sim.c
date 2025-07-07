@@ -40,7 +40,7 @@ int main(int argc, char **argv)
 
     load_binary_to_memory(argv[1], memory, size);
     
-    for (size_t i = 0; i < size; i++)
+    for (size_t i = 1; i < size; i++)
     {
         uint16_t instruction = extract_bits(memory[rf.pc], 0, 16);
         printf("0b%016b\n", instruction);

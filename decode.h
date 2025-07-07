@@ -22,4 +22,8 @@ R_format create_r_instruction (uint16_t * instruction);
 
 I_format create_i_instruction (uint16_t * instruction);
 
+void print_r_instruction(R_format instruction);
+
+void print_i_instruction(I_format instruction);
+
 #endif

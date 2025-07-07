@@ -1,9 +1,10 @@
 CC = gcc
 CPP = g++
 LD = gcc
-FLAGS = -Wall
+FLAGS = -Wall -g
 CFLAGS = $(FLAGS)
 CPPFLAGS = $(FLAGS)
+CXXFLAGS = $(FLAGS)
 LDFLAGS =
 BIN_NAME = arq-sim
 RM = rm
