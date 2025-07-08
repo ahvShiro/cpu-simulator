@@ -2,6 +2,7 @@
 
 #include "lib.h"
 #include "reg.h"
+#include "decode.h"
 
 /*
  * FORMATAÇÃO DA INSTRUÇÃO:
@@ -47,11 +48,11 @@ int main(int argc, char **argv)
         int first_bit = extract_bits(instruction, 15, 16);
 
         if(first_bit){
-            // 1
-            printf("I");
+            print_i_instruction(create_i_instruction(instruction));
+            printf("I\n");
         } else {
-            // 0
-            printf("R");
+            print_r_instruction(create_r_instruction(instruction));
+            printf("R\n");
         }
         printf("%d\n", first_bit);
 

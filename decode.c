@@ -15,10 +15,10 @@ R_format create_r_instruction (uint16_t instruction)
 
 void print_r_instruction(R_format ins)
 {
-    printf("Opcode: %d", ins.opcode);
-    printf("Destination register: %d", ins.dest);
-    printf("Operand 1: %d", ins.op1);
-    printf("Operand 2: %d", ins.op2);
+    printf("Opcode: %d\n", ins.opcode);
+    printf("Destination register: %d\n", ins.dest);
+    printf("Operand 1: %d\n", ins.op1);
+    printf("Operand 2: %d\n", ins.op2);
 }
 
 I_format create_i_instruction (uint16_t instruction) {
@@ -31,7 +31,7 @@ I_format create_i_instruction (uint16_t instruction) {
 
 void print_i_instruction(I_format ins)
 {
-    printf("Opcode: %d", ins.opcode);
-    printf("Register: %d", ins.reg);
-    printf("Immediate value: %d", ins.immd);
+    printf("Opcode: %d\n", ins.opcode);
+    printf("Register: %d\n", ins.reg);
+    printf("Immediate value: %d\n", ins.immd);
 }
