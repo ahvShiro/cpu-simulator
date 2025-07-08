@@ -23,9 +23,9 @@ void print_r_instruction(R_format ins)
 
 I_format create_i_instruction (uint16_t instruction) {
     I_format ins;
-    ins.opcode = extract_bits(instruction, 9, 15);
-    ins.reg = extract_bits(instruction, 0, 9);
-    ins.immd = extract_bits(instruction, 0, 15);
+    ins.opcode = extract_bits(instruction, 13, 15);
+    ins.reg = extract_bits(instruction, 10, 12);
+    ins.immd = extract_bits(instruction, 0, 9);
     return ins;
 }
 
