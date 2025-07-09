@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     }
 
     FILE * fp = fopen(argv[1], "r");
-    uint16_t size = fsize(fp);
+    const uint16_t size = fsize(fp);
     fclose(fp);
 
     RegFile rf = start_reg_file();
