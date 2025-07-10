@@ -57,10 +57,6 @@ int main(int argc, char **argv)
         printf("%d\n", first_bit);
 
     }
-    
-    // 0001
-    // >> 3
     free(memory);
-    // ler o primeiro bit para saber a formatação dos registradores e operandos
     return 0;
 }

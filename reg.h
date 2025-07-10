@@ -4,7 +4,7 @@
 #include "lib.h"
 
 typedef struct {
-    uint8_t pc;
+    uint16_t pc;
     uint8_t r0;
     uint8_t r1;
     uint8_t r2;
@@ -17,5 +17,6 @@ typedef struct {
 
 RegFile start_reg_file();
 
+void move_into_reg(uint8_t value, uint8_t reg);
 
 #endif
