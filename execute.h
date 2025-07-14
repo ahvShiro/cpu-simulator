@@ -6,13 +6,12 @@
 #define EXECUTE_H
 
 #include "lib.h"
+#include "decode.h"
 
 void main_loop();
 
 void execute_i(I_format ins);
 
 void execute_r(R_format ins);
-
-
 
 #endif //EXECUTE_H
