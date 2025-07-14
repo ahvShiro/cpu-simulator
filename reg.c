@@ -39,6 +39,6 @@ void move_into_reg(uint8_t value, uint8_t reg, RegFile rf)
         break;
     default:
         printf("Valor inválido, registro não existe.");
-        break;
+        exit(1);
     }
 }
