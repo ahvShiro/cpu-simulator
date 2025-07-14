@@ -3,6 +3,7 @@
 #include "lib.h"
 #include "reg.h"
 #include "decode.h"
+#include "execute.h"
 
 int main(int argc, char **argv)
 {
@@ -30,13 +31,15 @@ int main(int argc, char **argv)
         int first_bit = extract_bits(instruction, 15, 16);
 
         if(first_bit){
-            print_i_instruction(create_i_instruction(instruction));
-            printf("I\n");
+            I_format ins = create_i_instruction(instruction);
+            print_i_instruction(ins);
+            execute_i(ins);
+
         } else {
-            print_r_instruction(create_r_instruction(instruction));
-            printf("R\n");
+            R_format ins = create_r_instruction(instruction);
+            print_r_instruction(ins);
+            execute_r(ins);
         }
-        printf("%d\n", first_bit);
 
     }
     free(memory);

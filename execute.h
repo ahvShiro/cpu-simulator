@@ -5,7 +5,6 @@
 #ifndef EXECUTE_H
 #define EXECUTE_H
 
-#include "lib.h"
 #include "decode.h"
 
 void main_loop();
