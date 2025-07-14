@@ -3,6 +3,24 @@
 
 #include "lib.h"
 
+/*
+ * FORMATAÇÃO DA INSTRUÇÃO:
+ * 1 bit de formato
+ *
+ * Formato R = 0
+ * 6 bits de opcode
+ * 3 bits de destino
+ * 3 bits de operando
+ * 3 bits de operando
+ *
+ * Formato I = 1
+ * 2 bits opcode
+ * 3 bits registrador
+ * 10 bits imediatos
+ *
+ * NO TOTAL toda instrução tem 16 bits (0-15)
+ */
+
 typedef struct {
     // Bit 15 (bit = 0, R)
     uint16_t opcode : 6;  // Bits 14-9
