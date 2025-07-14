@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     }
 
     FILE * fp = fopen(argv[1], "r");
-    uint16_t size = fsize(fp);
+    const uint16_t size = fsize(fp);
     fclose(fp);
 
     RegFile rf = start_reg_file();
@@ -57,10 +57,6 @@ int main(int argc, char **argv)
         printf("%d\n", first_bit);
 
     }
-    
-    // 0001
-    // >> 3
     free(memory);
-    // ler o primeiro bit para saber a formatação dos registradores e operandos
     return 0;
 }

@@ -48,15 +48,17 @@ Para a obtenção do conceito A no projeto, será necessário a implementação 
 - [ ] Decodificação de instrução
 - [ ] Leitura de operandos, Execução e Write-back
 
-E também conter um pretidor de desvio dinâmico.
+E também conter um preditor de desvio dinâmico.
 
 Sugestão: implementar primeiro o modelo monociclo, e depois evoluir para pipeline.
 
-A equipe deverá também escrever códigos assembly para testar o simulador.
+A equipe deverá também escrever código assembly para testar o simulador.
 
 ## Etapas de Execução 
 
 ### FETCH - BUSCA DE INSTRUÇÕES
+
+- [x] Realizado
 
 Devemos fazer um programa que incrementa uma variável program counter, e a partir dessa variável, a gente pega a instrução que está neste índice da memória.
 
@@ -67,8 +69,9 @@ instrucao = memory[program_counter]
 ```
     
 ### DECODE - DECODIFICAÇÃO DA INSTRUÇÃO
+- [x] Realizado
 
-Separa a instrução adquirida em partes definidas. Dá pra usar uma struct aqui
+Separa a instrução adquirida em partes definidas. Dá para usar uma struct aqui
 
 ```c
 typedef struct {
