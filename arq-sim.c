@@ -27,7 +27,6 @@ int main(int argc, char **argv)
     {
         uint16_t instruction = extract_bits(memory[rf.pc], 0, 16);
         printf("0b%016b\n", instruction);
-        rf.pc++;
         int first_bit = extract_bits(instruction, 15, 16);
 
         if(first_bit){
@@ -40,7 +39,7 @@ int main(int argc, char **argv)
             print_r_instruction(ins);
             execute_r(ins);
         }
-
+        rf.pc++;
     }
     free(memory);
     return 0;
