@@ -3,24 +3,7 @@
 #include "lib.h"
 #include "reg.h"
 #include "decode.h"
-
-/*
- * FORMATAÇÃO DA INSTRUÇÃO:
- * 1 bit de formato
- *
- * Formato R = 0
- * 6 bits de opcode
- * 3 bits de destino
- * 3 bits de operando
- * 3 bits de operando
- *
- * Formato I = 1
- * 2 bits opcode
- * 3 bits registrador
- * 10 bits imediatos
- *
- * NO TOTAL toda instrução tem 16 bits (0-15)
- */
+#include "execute.h"
 
 int main(int argc, char **argv)
 {
@@ -44,18 +27,19 @@ int main(int argc, char **argv)
     {
         uint16_t instruction = extract_bits(memory[rf.pc], 0, 16);
         printf("0b%016b\n", instruction);
-        rf.pc++;
         int first_bit = extract_bits(instruction, 15, 16);
 
         if(first_bit){
-            print_i_instruction(create_i_instruction(instruction));
-            printf("I\n");
-        } else {
-            print_r_instruction(create_r_instruction(instruction));
-            printf("R\n");
-        }
-        printf("%d\n", first_bit);
+            I_format ins = create_i_instruction(instruction);
+            print_i_instruction(ins);
+            execute_i(ins);
 
+        } else {
+            R_format ins = create_r_instruction(instruction);
+            print_r_instruction(ins);
+            execute_r(ins);
+        }
+        rf.pc++;
     }
     free(memory);
     return 0;
