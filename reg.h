@@ -15,8 +15,6 @@ typedef struct {
     uint8_t r7;
 } RegFile;
 
-RegFile start_reg_file();
-
 void move_into_reg(uint8_t value, uint8_t reg, RegFile rf);
 
 #endif
