@@ -1,4 +1,3 @@
-#include "lib.h"
 #include "reg.h"
 
 RegFile start_reg_file()

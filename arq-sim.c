@@ -2,7 +2,6 @@
 
 #include "lib.h"
 #include "reg.h"
-#include "decode.h"
 #include "execute.h"
 
 int main(int argc, char **argv)
@@ -22,25 +21,9 @@ int main(int argc, char **argv)
     uint16_t *memory = malloc(size * sizeof(uint16_t)); // malloc usa metade do tamanho
 
     load_binary_to_memory(argv[1], memory, size);
-    
-    for (size_t i = 1; i < size; i++)
-    {
-        uint16_t instruction = extract_bits(memory[rf.pc], 0, 16);
-        printf("0b%016b\n", instruction);
-        int first_bit = extract_bits(instruction, 15, 16);
 
-        if(first_bit){
-            I_format ins = create_i_instruction(instruction);
-            print_i_instruction(ins);
-            execute_i(ins);
+    main_loop(size, memory, rf);
 
-        } else {
-            R_format ins = create_r_instruction(instruction);
-            print_r_instruction(ins);
-            execute_r(ins);
-        }
-        rf.pc++;
-    }
     free(memory);
     return 0;
 }
