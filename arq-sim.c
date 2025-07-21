@@ -16,7 +16,9 @@ int main(int argc, char **argv)
     const uint16_t size = fsize(fp);
     fclose(fp);
 
-    RegFile rf = start_reg_file();
+    RegFile rf = {
+        1,0,0,0,0,0,0,0,0
+    };
 
     uint16_t *memory = malloc(size * sizeof(uint16_t)); // malloc usa metade do tamanho
 
