@@ -6,8 +6,9 @@
 #define EXECUTE_H
 
 #include "decode.h"
+#include "reg.h"
 
-void main_loop();
+void main_loop(uint16_t size, uint16_t *memory, RegFile rf);
 
 void execute_i(I_format ins);
 

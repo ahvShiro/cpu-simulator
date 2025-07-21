@@ -3,6 +3,28 @@
 //
 #include "execute.h"
 
+void main_loop(uint16_t size, uint16_t *memory, RegFile rf)
+{
+    for (size_t i = 1; i < size; i++)
+    {
+        uint16_t instruction = extract_bits(memory[rf.pc], 0, 16);
+        printf("0b%016b\n", instruction);
+        int first_bit = extract_bits(instruction, 15, 16);
+
+        if(first_bit){
+            I_format ins = create_i_instruction(instruction);
+            print_i_instruction(ins);
+            execute_i(ins);
+
+        } else {
+            R_format ins = create_r_instruction(instruction);
+            print_r_instruction(ins);
+            execute_r(ins);
+        }
+        rf.pc++;
+    }
+}
+
 void execute_r(R_format ins)
 {
     switch (ins.opcode)
