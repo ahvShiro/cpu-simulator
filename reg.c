@@ -1,5 +1,9 @@
 #include "reg.h"
 
+RegFile rf = {
+    1,0,0,0,0,0,0,0,0
+};
+
 void move_into_reg(uint8_t value, uint8_t reg, RegFile rf)
 {
     switch (reg)

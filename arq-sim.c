@@ -16,10 +16,6 @@ int main(int argc, char **argv)
     const uint16_t size = fsize(fp);
     fclose(fp);
 
-    RegFile rf = {
-        1,0,0,0,0,0,0,0,0
-    };
-
     uint16_t *memory = malloc(size * sizeof(uint16_t)); // malloc usa metade do tamanho
 
     load_binary_to_memory(argv[1], memory, size);
