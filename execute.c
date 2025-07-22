@@ -7,24 +7,25 @@ void program_loop(uint16_t size, const uint16_t *memory, RegFile rf)
 {
     for (size_t i = 1; i < size; i++)
     {
+        printf("PC: %d\n", rf.pc);
         uint16_t instruction = extract_bits(memory[rf.pc], 0, 16);
         int first_bit = extract_bits(instruction, 15, 16);
 
         if(first_bit){
             I_format ins = create_i_instruction(instruction);
             print_i_instruction(ins);
-            execute_i(ins);
+            execute_i(ins, &rf);
 
         } else {
             R_format ins = create_r_instruction(instruction);
             print_r_instruction(ins);
-            execute_r(ins);
+            execute_r(ins, &rf);
         }
         rf.pc++;
     }
 }
 
-void execute_r(R_format ins)
+void execute_r(R_format ins, RegFile * rf)
 {
     switch (ins.opcode)
     {
@@ -78,11 +79,12 @@ void execute_r(R_format ins)
         break;
     default:
         printf("nope\n");
+        // exit(1);
         break;
     }
 }
 
-void execute_i(I_format ins)
+void execute_i(I_format ins, RegFile *rf)
 {
     switch (ins.opcode)
     {
@@ -97,6 +99,7 @@ void execute_i(I_format ins)
         break;
     default:
         printf("nope\n");
+        // exit(1);
         break;
     }
 }
