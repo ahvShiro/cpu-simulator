@@ -3,12 +3,11 @@
 //
 #include "execute.h"
 
-void main_loop(uint16_t size, uint16_t *memory, RegFile rf)
+void program_loop(uint16_t size, uint16_t *memory, RegFile rf)
 {
     for (size_t i = 1; i < size; i++)
     {
         uint16_t instruction = extract_bits(memory[rf.pc], 0, 16);
-        printf("0b%016b\n", instruction);
         int first_bit = extract_bits(instruction, 15, 16);
 
         if(first_bit){
