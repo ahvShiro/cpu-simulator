@@ -3,7 +3,7 @@
 //
 #include "execute.h"
 
-void program_loop(uint16_t size, uint16_t *memory, RegFile rf)
+void program_loop(uint16_t size, const uint16_t *memory, RegFile rf)
 {
     for (size_t i = 1; i < size; i++)
     {
