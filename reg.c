@@ -29,7 +29,33 @@ void move_into_reg(uint8_t value, uint8_t reg, RegFile *rf)
         rf->r7 = value;
         break;
     default:
-        printf("Valor inválido, registro não existe.");
+        printf("Invalid Register: stopping program");
+        exit(1);
+    }
+}
+
+uint8_t get_value_from_reg(uint8_t reg, const RegFile *rf)
+{
+    switch (reg)
+    {
+    case 0:
+        return rf->r0;
+    case 1:
+        return rf->r1;
+    case 2:
+        return rf->r2;
+    case 3:
+        return rf->r3;
+    case 4:
+        return rf->r4;
+    case 5:
+        return rf->r5;
+    case 6:
+        return rf->r6;
+    case 7:
+        return rf->r7;
+    default:
+        printf("Invalid Register: stopping program");
         exit(1);
     }
 }

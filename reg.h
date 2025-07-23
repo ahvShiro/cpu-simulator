@@ -16,5 +16,6 @@ typedef struct {
 } RegFile;
 
 void move_into_reg(uint8_t value, uint8_t reg, RegFile *rf);
+uint8_t get_value_from_reg(uint8_t reg, const RegFile *rf);
 
 #endif
