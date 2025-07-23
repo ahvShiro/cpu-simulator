@@ -32,9 +32,9 @@ Esta é uma arquitetura RISC (Reduced Instruction Set Computer) de 16 bits com a
 - [ ] cmp_neq
 - [ ] load
 - [ ] store
-- [ ] jump
+- [x] jump
 - [ ] jump_cond
-- [ ] mov
+- [x] mov
 - [ ] syscall
 
 A implementação será feita o mais próximo possível da operação real do processador, de forma funcional (não no nível de circuito), separando as diferentes etapas de processamento.
