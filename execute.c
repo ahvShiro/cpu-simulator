@@ -14,18 +14,18 @@ void program_loop(uint16_t size, const uint16_t *memory, RegFile rf)
         if(first_bit){
             I_format ins = create_i_instruction(instruction);
             print_i_instruction(ins);
-            execute_i(ins, &rf);
+            execute_i(ins, &rf, memory);
 
         } else {
             R_format ins = create_r_instruction(instruction);
             print_r_instruction(ins);
-            execute_r(ins, &rf);
+            execute_r(ins, &rf, memory);
         }
         rf.pc++;
     }
 }
 
-void execute_r(R_format ins, RegFile * rf)
+void execute_r(R_format ins, RegFile * rf, const uint16_t *memory)
 {
     uint8_t val;
     switch (ins.opcode)
@@ -70,33 +70,48 @@ void execute_r(R_format ins, RegFile * rf)
         break;
     case 10:
         printf("and\n");
+        val = get_reg(ins.op1, rf) && get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 11:
         printf("or\n");
+        val = get_reg(ins.op1, rf) || get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 12:
-        printf("shiftl\n");
+        printf("xor\n");
+        val = get_reg(ins.op1, rf) ^ get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 13:
-        printf("shiftr\n");
+        printf("shiftl\n");
+        val = get_reg(ins.op1, rf) << get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 14:
-        printf("load\n");
+        printf("shiftr\n");
+        val = get_reg(ins.op1, rf) >> get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 15:
+        printf("load\n");
+        break;
+    case 16:
         printf("store\n");
         break;
     case 63:
         printf("syscall");
+        free(memory);
         exit(0);
     default:
         printf("nope\n");
-        //exit(1);
+        free(memory);
+        exit(1);
         break;
     }
 }
 
-void execute_i(I_format ins, RegFile *rf)
+void execute_i(I_format ins, RegFile *rf, const uint16_t *memory)
 {
     switch (ins.opcode)
     {
@@ -117,7 +132,8 @@ void execute_i(I_format ins, RegFile *rf)
         break;
     default:
         printf("nope\n");
-        //exit(1);
+        free(memory);
+        exit(1);
         break;
     }
 }
