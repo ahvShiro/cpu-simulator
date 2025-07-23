@@ -27,26 +27,27 @@ void program_loop(uint16_t size, const uint16_t *memory, RegFile rf)
 
 void execute_r(R_format ins, RegFile * rf)
 {
+    uint8_t val;
     switch (ins.opcode)
     {
     case 0:
         printf("add\n");
-        const uint8_t val = get_reg(ins.op1, rf) + get_reg(ins.op2, rf);
+        val = get_reg(ins.op1, rf) + get_reg(ins.op2, rf);
         move_reg(val, ins.dest, rf);
         break;
     case 1:
         printf("sub\n");
-        const uint8_t val = get_reg(ins.op1, rf) - get_reg(ins.op2, rf);
+        val = get_reg(ins.op1, rf) - get_reg(ins.op2, rf);
         move_reg(val, ins.dest, rf);
         break;
     case 2:
         printf("mul\n");
-        const uint8_t val = get_reg(ins.op1, rf) * get_reg(ins.op2, rf);
+        val = get_reg(ins.op1, rf) * get_reg(ins.op2, rf);
         move_reg(val, ins.dest, rf);
         break;
     case 3:
         printf("div\n");
-        const uint8_t val = get_reg(ins.op1, rf) / get_reg(ins.op2, rf);
+        val = get_reg(ins.op1, rf) / get_reg(ins.op2, rf);
         move_reg(val, ins.dest, rf);
         break;
     case 4:
