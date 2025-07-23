@@ -1,6 +1,6 @@
 #include "reg.h"
 
-void move_into_reg(uint8_t value, uint8_t reg, RegFile *rf)
+void move_reg(uint8_t value, uint8_t reg, RegFile *rf)
 {
     switch (reg)
     {
@@ -34,7 +34,7 @@ void move_into_reg(uint8_t value, uint8_t reg, RegFile *rf)
     }
 }
 
-uint8_t get_value_from_reg(uint8_t reg, const RegFile *rf)
+uint8_t get_reg(uint8_t reg, const RegFile *rf)
 {
     switch (reg)
     {

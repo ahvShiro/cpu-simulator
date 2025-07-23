@@ -31,15 +31,23 @@ void execute_r(R_format ins, RegFile * rf)
     {
     case 0:
         printf("add\n");
+        const uint8_t val = get_reg(ins.op1, rf) + get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 1:
         printf("sub\n");
+        const uint8_t val = get_reg(ins.op1, rf) - get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 2:
         printf("mul\n");
+        const uint8_t val = get_reg(ins.op1, rf) * get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 3:
         printf("div\n");
+        const uint8_t val = get_reg(ins.op1, rf) / get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 4:
         printf("cmp_eq\n");
@@ -94,14 +102,14 @@ void execute_i(I_format ins, RegFile *rf)
         break;
     case 1:
         printf("jump_cond\n");
-        if (get_value_from_reg(ins.reg, rf) == 0)
+        if (get_reg(ins.reg, rf) == 0)
         {
             rf->pc = ins.immd;
         }
         break;
     case 3:
         printf("mov\n");
-        move_into_reg(ins.immd, ins.reg, rf);
+        move_reg(ins.immd, ins.reg, rf);
         break;
     default:
         printf("nope\n");
