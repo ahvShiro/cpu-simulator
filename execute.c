@@ -86,6 +86,9 @@ void execute_r(R_format ins, RegFile * rf)
     case 15:
         printf("store\n");
         break;
+    case 63:
+        printf("syscall");
+        exit(0);
     default:
         printf("nope\n");
         //exit(1);
