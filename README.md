@@ -24,18 +24,18 @@ Esta é uma arquitetura RISC (Reduced Instruction Set Computer) de 16 bits com a
 
 ## Instruções para implementação
 
-- [ ] add
-- [ ] sub
-- [ ] mul
-- [ ] div
+- [x] add
+- [x] sub
+- [x] mul
+- [x] div
 - [ ] cmp_equal
 - [ ] cmp_neq
 - [ ] load
 - [ ] store
 - [x] jump
-- [ ] jump_cond
+- [x] jump_cond
 - [x] mov
-- [ ] syscall
+- [x] syscall
 
 A implementação será feita o mais próximo possível da operação real do processador, de forma funcional (não no nível de circuito), separando as diferentes etapas de processamento.
 
