@@ -94,6 +94,10 @@ void execute_i(I_format ins, RegFile *rf)
         break;
     case 1:
         printf("jump_cond\n");
+        if (get_value_from_reg(ins.reg, rf) == 0)
+        {
+            rf->pc = ins.immd;
+        }
         break;
     case 3:
         printf("mov\n");
