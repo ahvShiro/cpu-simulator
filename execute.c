@@ -5,7 +5,7 @@
 
 void program_loop(uint16_t size, const uint16_t *memory, RegFile rf)
 {
-    for (size_t i = 1; i < size; i++)
+    for (size_t i = rf.pc; i < size; i++)
     {
         printf("PC: %d\n", rf.pc);
         uint16_t instruction = extract_bits(memory[rf.pc], 0, 16);
@@ -79,7 +79,7 @@ void execute_r(R_format ins, RegFile * rf)
         break;
     default:
         printf("nope\n");
-        // exit(1);
+        //exit(1);
         break;
     }
 }
@@ -90,16 +90,18 @@ void execute_i(I_format ins, RegFile *rf)
     {
     case 0:
         printf("jump\n");
+        rf->pc = ins.immd;
         break;
     case 1:
         printf("jump_cond\n");
         break;
     case 3:
         printf("mov\n");
+        move_into_reg(ins.immd, ins.reg, rf);
         break;
     default:
         printf("nope\n");
-        // exit(1);
+        //exit(1);
         break;
     }
 }
