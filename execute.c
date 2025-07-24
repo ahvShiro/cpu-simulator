@@ -3,7 +3,7 @@
 //
 #include "execute.h"
 
-void program_loop(uint16_t size, const uint16_t *memory, RegFile rf)
+void program_loop(uint16_t size, uint16_t *memory, RegFile rf)
 {
     for (size_t i = rf.pc; i < size; i++)
     {
@@ -25,7 +25,7 @@ void program_loop(uint16_t size, const uint16_t *memory, RegFile rf)
     }
 }
 
-void execute_r(R_format ins, RegFile * rf, const uint16_t *memory)
+void execute_r(R_format ins, RegFile * rf, uint16_t *memory)
 {
     uint8_t val;
     switch (ins.opcode)
@@ -95,9 +95,13 @@ void execute_r(R_format ins, RegFile * rf, const uint16_t *memory)
         break;
     case 15:
         printf("load\n");
+        // reg de destino tem o registro que terá o valor do endereço de memória, operando 1 o endereço, operando 2 inutilizado
+        val = memory[get_reg(ins.op1, rf)];
+        move_reg(val, ins.dest, rf);
         break;
     case 16:
         printf("store\n");
+        memory[get_reg(ins.dest, rf)] = get_reg(ins.op1, rf);
         break;
     case 63:
         printf("syscall");
@@ -107,11 +111,11 @@ void execute_r(R_format ins, RegFile * rf, const uint16_t *memory)
         printf("nope\n");
         free(memory);
         exit(1);
-        break;
+
     }
 }
 
-void execute_i(I_format ins, RegFile *rf, const uint16_t *memory)
+void execute_i(I_format ins, RegFile *rf, uint16_t *memory)
 {
     switch (ins.opcode)
     {
@@ -134,6 +138,5 @@ void execute_i(I_format ins, RegFile *rf, const uint16_t *memory)
         printf("nope\n");
         free(memory);
         exit(1);
-        break;
     }
 }
