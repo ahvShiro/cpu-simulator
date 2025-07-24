@@ -52,21 +52,33 @@ void execute_r(R_format ins, RegFile * rf, uint16_t *memory)
         break;
     case 4:
         printf("cmp_eq\n");
+        val = get_reg(ins.op1, rf) == get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 5:
         printf("cmp_neq\n");
+        val = get_reg(ins.op1, rf) != get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 6:
         printf("cmp_less\n");
+        val = get_reg(ins.op1, rf) < get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 7:
         printf("cmp_greater\n");
+        val = get_reg(ins.op1, rf) > get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 8:
         printf("cmp_less_eq\n");
+        val = get_reg(ins.op1, rf) <= get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 9:
         printf("cmp_greater_eq\n");
+        val = get_reg(ins.op1, rf) >= get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 10:
         printf("and\n");
