@@ -7,6 +7,6 @@
 
 #include "reg.h"
 
-void syscall_routine(RegFile rf, uint16_t *memory);
+void syscall_routine(RegFile * rf, uint16_t *memory);
 
 #endif //__HEADER_SYSCALL_H__
