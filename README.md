@@ -28,10 +28,10 @@ Esta é uma arquitetura RISC (Reduced Instruction Set Computer) de 16 bits com a
 - [x] sub
 - [x] mul
 - [x] div
-- [ ] cmp_equal
-- [ ] cmp_neq
-- [ ] load
-- [ ] store
+- [x] cmp_equal
+- [x] cmp_neq
+- [x] load
+- [x] store
 - [x] jump
 - [x] jump_cond
 - [x] mov
