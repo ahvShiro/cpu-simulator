@@ -9,7 +9,7 @@ void program_loop(uint16_t *memory, RegFile *rf)
     {
         rf->pc++;
         //printf("PC: %d\n", rf.pc);
-        uint16_t instruction = extract_bits(memory[rf->pc], 0, 16);
+        uint16_t instruction = memory[rf->pc];
         int type_bit = extract_bits(instruction, 15, 16);
 
         if(type_bit){
