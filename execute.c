@@ -3,10 +3,11 @@
 //
 #include "execute.h"
 #include "syscall.h"
-void program_loop(uint16_t size, uint16_t *memory, RegFile rf)
+void program_loop(uint16_t *memory, RegFile rf)
 {
-    for (size_t i = rf.pc; i < size; i++)
+    for (size_t i = rf.pc; i < -1; i++)
     {
+        rf.pc++;
         //printf("PC: %d\n", rf.pc);
         uint16_t instruction = extract_bits(memory[rf.pc], 0, 16);
         int first_bit = extract_bits(instruction, 15, 16);
@@ -21,7 +22,7 @@ void program_loop(uint16_t size, uint16_t *memory, RegFile rf)
             //print_r_instruction(ins);
             execute_r(ins, &rf, memory);
         }
-        rf.pc++;
+
     }
 }
 
@@ -116,10 +117,9 @@ void execute_r(R_format ins, RegFile * rf, uint16_t *memory)
         memory[get_reg(ins.dest, rf)] = get_reg(ins.op1, rf);
         break;
     case 63:
-        printf("syscall\n");
+        //printf("syscall\n");
         syscall_routine(rf, memory);
-        free(memory);
-        exit(0);
+        break;
     default:
         //printf("nope\n");
         free(memory);
@@ -138,7 +138,7 @@ void execute_i(I_format ins, RegFile *rf, uint16_t *memory)
         break;
     case 1:
         //printf("jump_cond\n");
-        if (get_reg(ins.reg, rf) == 0)
+        if (get_reg(ins.reg, rf) != 0)
         {
             rf->pc = ins.immd;
         }

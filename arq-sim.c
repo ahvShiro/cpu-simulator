@@ -18,14 +18,14 @@ int main(int argc, char **argv)
     fclose(fp);
     //inicializa os registradores
     RegFile rf = {
-        1,0,0,0,0,0,0,0,0
+        0,0,0,0,0,0,0,0,0
     };
     
     uint16_t *memory = malloc(size * sizeof(uint16_t)); // malloc usa metade do tamanho
 
     load_binary_to_memory(argv[1], memory, size);
 
-    program_loop(size, memory, rf);
+    program_loop(memory, rf);
 
     free(memory);
     return 0;

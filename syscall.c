@@ -13,13 +13,13 @@ void syscall_routine(RegFile * rf, uint16_t *memory)
         exit(0);
     case 1:
         // print string
-        while (memory[c] != 0)
+        while ((char) memory[c] != 0)
         {
             printf("%c", memory[c]);
             c++;
         }
         break;
-    case 2:
+    case 3:
         //print integer
         while (memory[c] != 0)
         {
@@ -28,7 +28,7 @@ void syscall_routine(RegFile * rf, uint16_t *memory)
 
         }
         break;
-    case 3:
+    case 2:
         // print string with newline
         while (memory[c] != 0)
         {
