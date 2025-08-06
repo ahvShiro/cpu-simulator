@@ -8,10 +8,10 @@
 #include "decode.h"
 #include "reg.h"
 
-void program_loop(uint16_t size, const uint16_t *memory, RegFile rf);
+void program_loop(uint16_t size, uint16_t *memory, RegFile rf);
 
-void execute_i(I_format ins, RegFile * rf);
+void execute_i(I_format ins, RegFile * rf, uint16_t *memory);
 
-void execute_r(R_format ins, RegFile * rf);
+void execute_r(R_format ins, RegFile * rf, uint16_t *memory );
 
 #endif //EXECUTE_H

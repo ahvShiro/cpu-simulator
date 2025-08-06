@@ -2,104 +2,154 @@
 // Created by fflv on 14/07/25.
 //
 #include "execute.h"
-
-void program_loop(uint16_t size, const uint16_t *memory, RegFile rf)
+#include "syscall.h"
+void program_loop(uint16_t size, uint16_t *memory, RegFile rf)
 {
-    for (size_t i = 1; i < size; i++)
+    for (size_t i = rf.pc; i < size; i++)
     {
-        printf("PC: %d\n", rf.pc);
+        //printf("PC: %d\n", rf.pc);
         uint16_t instruction = extract_bits(memory[rf.pc], 0, 16);
         int first_bit = extract_bits(instruction, 15, 16);
 
         if(first_bit){
             I_format ins = create_i_instruction(instruction);
-            print_i_instruction(ins);
-            execute_i(ins, &rf);
+            //print_i_instruction(ins);
+            execute_i(ins, &rf, memory);
 
         } else {
             R_format ins = create_r_instruction(instruction);
-            print_r_instruction(ins);
-            execute_r(ins, &rf);
+            //print_r_instruction(ins);
+            execute_r(ins, &rf, memory);
         }
         rf.pc++;
     }
 }
 
-void execute_r(R_format ins, RegFile * rf)
+void execute_r(R_format ins, RegFile * rf, uint16_t *memory)
 {
+    uint8_t val;
     switch (ins.opcode)
     {
     case 0:
-        printf("add\n");
+        //printf("add\n");
+        val = get_reg(ins.op1, rf) + get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 1:
-        printf("sub\n");
+        //printf("sub\n");
+        val = get_reg(ins.op1, rf) - get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 2:
-        printf("mul\n");
+        //printf("mul\n");
+        val = get_reg(ins.op1, rf) * get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 3:
-        printf("div\n");
+        //printf("div\n");
+        val = get_reg(ins.op1, rf) / get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 4:
-        printf("cmp_eq\n");
+        //printf("cmp_eq\n");
+        val = get_reg(ins.op1, rf) == get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 5:
-        printf("cmp_neq\n");
+        //printf("cmp_neq\n");
+        val = get_reg(ins.op1, rf) != get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 6:
-        printf("cmp_less\n");
+        //printf("cmp_less\n");
+        val = get_reg(ins.op1, rf) < get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 7:
-        printf("cmp_greater\n");
+        //printf("cmp_greater\n");
+        val = get_reg(ins.op1, rf) > get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 8:
-        printf("cmp_less_eq\n");
+        //printf("cmp_less_eq\n");
+        val = get_reg(ins.op1, rf) <= get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 9:
-        printf("cmp_greater_eq\n");
+        //printf("cmp_greater_eq\n");
+        val = get_reg(ins.op1, rf) >= get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 10:
-        printf("and\n");
+        //printf("and\n");
+        val = get_reg(ins.op1, rf) && get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 11:
-        printf("or\n");
+        //printf("or\n");
+        val = get_reg(ins.op1, rf) || get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 12:
-        printf("shiftl\n");
+        //printf("xor\n");
+        val = get_reg(ins.op1, rf) ^ get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 13:
-        printf("shiftr\n");
+        //printf("shiftl\n");
+        val = get_reg(ins.op1, rf) << get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 14:
-        printf("load\n");
+        //printf("shiftr\n");
+        val = get_reg(ins.op1, rf) >> get_reg(ins.op2, rf);
+        move_reg(val, ins.dest, rf);
         break;
     case 15:
-        printf("store\n");
+        //printf("load\n");
+        // reg de destino tem o registro que terá o valor do endereço de memória, operando 1 o endereço, operando 2 inutilizado
+        val = memory[get_reg(ins.op1, rf)];
+        move_reg(val, ins.dest, rf);
         break;
+    case 16:
+        //printf("store\n");
+        memory[get_reg(ins.dest, rf)] = get_reg(ins.op1, rf);
+        break;
+    case 63:
+        printf("syscall\n");
+        syscall_routine(rf, memory);
+        free(memory);
+        exit(0);
     default:
-        printf("nope\n");
-        // exit(1);
-        break;
+        //printf("nope\n");
+        free(memory);
+        exit(1);
+
     }
 }
 
-void execute_i(I_format ins, RegFile *rf)
+void execute_i(I_format ins, RegFile *rf, uint16_t *memory)
 {
     switch (ins.opcode)
     {
     case 0:
-        printf("jump\n");
+        //printf("jump\n");
+        rf->pc = ins.immd;
         break;
     case 1:
-        printf("jump_cond\n");
+        //printf("jump_cond\n");
+        if (get_reg(ins.reg, rf) == 0)
+        {
+            rf->pc = ins.immd;
+        }
         break;
     case 3:
-        printf("mov\n");
+        //printf("mov\n");
+        move_reg(ins.immd, ins.reg, rf);
         break;
     default:
-        printf("nope\n");
-        // exit(1);
-        break;
+        //printf("nope\n");
+        free(memory);
+        exit(1);
     }
 }
