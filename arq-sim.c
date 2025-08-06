@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 
     load_binary_to_memory(argv[1], memory, size);
 
-    program_loop(memory, rf);
+    program_loop(memory, &rf);
 
     free(memory);
     return 0;

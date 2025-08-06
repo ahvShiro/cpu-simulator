@@ -3,24 +3,24 @@
 //
 #include "execute.h"
 #include "syscall.h"
-void program_loop(uint16_t *memory, RegFile rf)
+void program_loop(uint16_t *memory, RegFile *rf)
 {
-    for (size_t i = rf.pc; i < -1; i++)
+    for (size_t i = rf->pc; i < -1; i++)
     {
-        rf.pc++;
+        rf->pc++;
         //printf("PC: %d\n", rf.pc);
-        uint16_t instruction = extract_bits(memory[rf.pc], 0, 16);
-        int first_bit = extract_bits(instruction, 15, 16);
+        uint16_t instruction = extract_bits(memory[rf->pc], 0, 16);
+        int type_bit = extract_bits(instruction, 15, 16);
 
-        if(first_bit){
+        if(type_bit){
             I_format ins = create_i_instruction(instruction);
             //print_i_instruction(ins);
-            execute_i(ins, &rf, memory);
+            execute_i(ins, rf, memory);
 
         } else {
             R_format ins = create_r_instruction(instruction);
             //print_r_instruction(ins);
-            execute_r(ins, &rf, memory);
+            execute_r(ins, rf, memory);
         }
 
     }
@@ -28,7 +28,7 @@ void program_loop(uint16_t *memory, RegFile rf)
 
 void execute_r(R_format ins, RegFile * rf, uint16_t *memory)
 {
-    uint8_t val;
+    uint16_t val;
     switch (ins.opcode)
     {
     case 0:
@@ -83,12 +83,12 @@ void execute_r(R_format ins, RegFile * rf, uint16_t *memory)
         break;
     case 10:
         //printf("and\n");
-        val = get_reg(ins.op1, rf) && get_reg(ins.op2, rf);
+        val = get_reg(ins.op1, rf) & get_reg(ins.op2, rf);
         move_reg(val, ins.dest, rf);
         break;
     case 11:
         //printf("or\n");
-        val = get_reg(ins.op1, rf) || get_reg(ins.op2, rf);
+        val = get_reg(ins.op1, rf) | get_reg(ins.op2, rf);
         move_reg(val, ins.dest, rf);
         break;
     case 12:
@@ -114,7 +114,7 @@ void execute_r(R_format ins, RegFile * rf, uint16_t *memory)
         break;
     case 16:
         //printf("store\n");
-        memory[get_reg(ins.dest, rf)] = get_reg(ins.op1, rf);
+        memory[get_reg(ins.op1, rf)] = get_reg(ins.op2, rf);
         break;
     case 63:
         //printf("syscall\n");
