@@ -3,10 +3,10 @@
 
 #include "syscall.h"
 
-void syscall_routine(RegFile * rf, uint16_t *memory)
+void syscall_routine(uint16_t *memory)
 {
-    uint16_t c = rf->r1;
-    switch (rf->r0)
+    uint16_t c = gen_register[1];
+    switch (gen_register[0])
     {
     case 0:
         free(memory);
@@ -39,7 +39,7 @@ void syscall_routine(RegFile * rf, uint16_t *memory)
         printf("\n");
         break;
     default:
-        printf("System call code %d doesn't exist\n", rf->pc);
+        printf("System call code %d doesn't exist\n", pc);
         free(memory);
         exit(1);
     }

@@ -38,15 +38,14 @@ typedef struct {
     uint16_t reg : 3;     // Bits 12-10
     uint16_t opcode : 2;  // Bits 14-13
     uint16_t type : 1;
-
 } I_format;
 
-R_format create_r_instruction (uint16_t instruction);
+void create_r_instruction (R_format *ins, uint16_t instruction);
 
-I_format create_i_instruction (uint16_t instruction);
+void create_i_instruction (I_format *ins, uint16_t instruction);
 
-void print_r_instruction(R_format ins);
+void print_r_instruction(R_format *ins);
 
-void print_i_instruction(I_format ins);
+void print_i_instruction(I_format *ins);
 
 #endif
