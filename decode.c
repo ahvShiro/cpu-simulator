@@ -5,7 +5,7 @@
 
 void create_r_instruction (R_format * ins, uint16_t instruction)
 {
-    memcpy(ins, &instruction, sizeof(ins));
+    memcpy(ins, &instruction, sizeof(*ins));
 }
 
 void print_r_instruction(R_format * ins)
@@ -17,7 +17,7 @@ void print_r_instruction(R_format * ins)
 }
 
 void create_i_instruction (I_format * ins, uint16_t instruction) {
-    memcpy(ins, &instruction, sizeof(ins));
+    memcpy(ins, &instruction, sizeof(*ins));
 }
 
 void print_i_instruction(I_format * ins)

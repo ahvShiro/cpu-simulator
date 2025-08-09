@@ -9,35 +9,35 @@ void program_loop(uint16_t *memory)
 {
     for (size_t i = pc; i < -1; i++)
     {
-        pc++;
         //printf("PC: %d\n", pc);
         uint16_t instruction = memory[pc];
+        pc++;
         int type_bit = extract_bits(instruction, 15, 16);
 
         if(type_bit){
             I_format ins;
             create_i_instruction(&ins, instruction);
-            print_i_instruction(&ins);
+            // print_i_instruction(&ins);
             execute_i(&ins, memory);
 
         } else {
             R_format ins;
             create_r_instruction(&ins, instruction);
-            print_r_instruction(&ins);
+            //print_r_instruction(&ins);
             execute_r(&ins, memory);
         }
 
     }
 }
 
-void execute_r(R_format * ins, uint16_t *memory)
+void execute_r(const R_format * ins, uint16_t *memory)
 {
     uint16_t val;
     switch (ins->opcode)
     {
     case 0:
         //printf("add\n");
-        val = get_reg(ins->op1) + get_reg(ins->op2);
+        val = gen_register[ins->op1] + gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 1:
@@ -132,7 +132,7 @@ void execute_r(R_format * ins, uint16_t *memory)
     }
 }
 
-void execute_i(I_format * ins, uint16_t *memory)
+void execute_i(const I_format * ins, uint16_t *memory)
 {
     switch (ins->opcode)
     {
@@ -150,6 +150,7 @@ void execute_i(I_format * ins, uint16_t *memory)
     case 3:
         //printf("mov\n");
         move_reg(ins->immd, ins->reg);
+        gen_register[ins->reg] = ins->immd;
         break;
     default:
         //printf("nope\n");

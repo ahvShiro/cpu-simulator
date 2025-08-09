@@ -10,8 +10,8 @@
 
 void program_loop(uint16_t *memory);
 
-void execute_i(I_format * ins, uint16_t *memory);
+void execute_i(const I_format * ins, uint16_t *memory);
 
-void execute_r(R_format * ins, uint16_t *memory );
+void execute_r(const R_format * ins, uint16_t *memory );
 
 #endif //EXECUTE_H

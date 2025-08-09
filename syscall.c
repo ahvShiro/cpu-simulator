@@ -10,33 +10,33 @@ void syscall_routine(uint16_t *memory)
     {
     case 0:
         free(memory);
+
         exit(0);
     case 1:
         // print string
         while ((char) memory[c] != 0)
         {
             printf("%c", memory[c]);
+            fflush(stdout);
             c++;
         }
+
         break;
     case 3:
-        //print integer
-        while (memory[c] != 0)
-        {
-            printf("%d", memory[c]);
-            c++;
-
-        }
+        printf("%d", memory[c]);
+        fflush(stdout);
         break;
     case 2:
         // print string with newline
         while (memory[c] != 0)
         {
             printf("%c", memory[c]);
+            fflush(stdout);
             c++;
 
         }
         printf("\n");
+        fflush(stdout);
         break;
     default:
         printf("System call code %d doesn't exist\n", pc);
