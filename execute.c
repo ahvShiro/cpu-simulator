@@ -141,7 +141,7 @@ void execute_r(const R_format * ins, uint16_t *memory)
         syscall_routine(memory);
         break;
     default:
-        //printf("nope\n");
+        printf("Instruction does not exist");
         free(memory);
         exit(1);
 
@@ -169,7 +169,7 @@ void execute_i(const I_format * ins, uint16_t *memory)
         gen_register[ins->reg] = ins->immd;
         break;
     default:
-        //printf("nope\n");
+        printf("Instruction does not exist");
         free(memory);
         exit(1);
     }

@@ -41,7 +41,7 @@ void syscall_routine(uint16_t *memory)
         fflush(stdout);
         break;
     default:
-        printf("System call code %d doesn't exist\n", pc);
+        printf("System call code %d doesn't exist\n", gen_register[0]);
         free(memory);
         exit(1);
     }
