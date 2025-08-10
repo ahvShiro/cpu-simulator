@@ -33,81 +33,97 @@ void program_loop(uint16_t *memory)
 void execute_r(const R_format * ins, uint16_t *memory)
 {
     uint16_t val;
+    uint16_t valu;
     switch (ins->opcode)
     {
     case 0:
         //printf("add\n");
-        val = gen_register[ins->op1] + gen_register[ins->op2];
+        valu = gen_register[ins->op1];
+        val = valu + gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 1:
         //printf("sub\n");
-        val = get_reg(ins->op1) - get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu - gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 2:
         //printf("mul\n");
-        val = get_reg(ins->op1) * get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu * gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 3:
         //printf("div\n");
-        val = get_reg(ins->op1) / get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu / gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 4:
         //printf("cmp_eq\n");
-        val = get_reg(ins->op1) == get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu == gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 5:
         //printf("cmp_neq\n");
-        val = get_reg(ins->op1) != get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu != gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 6:
         //printf("cmp_less\n");
-        val = get_reg(ins->op1) < get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu < gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 7:
         //printf("cmp_greater\n");
-        val = get_reg(ins->op1) > get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu > gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 8:
         //printf("cmp_less_eq\n");
-        val = get_reg(ins->op1) <= get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu <= gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 9:
         //printf("cmp_greater_eq\n");
-        val = get_reg(ins->op1) >= get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu >= gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 10:
         //printf("and\n");
-        val = get_reg(ins->op1) & get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu & gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 11:
         //printf("or\n");
-        val = get_reg(ins->op1) | get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu | gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 12:
         //printf("xor\n");
-        val = get_reg(ins->op1) ^ get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu ^ gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 13:
         //printf("shiftl\n");
-        val = get_reg(ins->op1) << get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu << gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 14:
         //printf("shiftr\n");
-        val = get_reg(ins->op1) >> get_reg(ins->op2);
+        valu = gen_register[ins->op1];
+        val = valu >> gen_register[ins->op2];
         move_reg(val, ins->dest);
         break;
     case 15:

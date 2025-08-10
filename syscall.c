@@ -23,11 +23,12 @@ void syscall_routine(uint16_t *memory)
 
         break;
     case 3:
-        printf("%d", memory[c]);
+        printf("%d", gen_register[1]);
         fflush(stdout);
         break;
     case 2:
         // print string with newline
+        /*
         while (memory[c] != 0)
         {
             printf("%c", memory[c]);
@@ -35,6 +36,7 @@ void syscall_routine(uint16_t *memory)
             c++;
 
         }
+        */
         printf("\n");
         fflush(stdout);
         break;
