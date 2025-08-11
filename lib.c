@@ -41,6 +41,7 @@ int fsize(FILE *pf)
 	return size;
 }
 
+/*
 void print_memory(const uint16_t *memory, uint32_t index)
 {
     printf("Instrução %d: 0b%016b\n", index, memory[index]);
@@ -53,3 +54,4 @@ void print_memory_all (const uint16_t *memory, uint32_t size)
         printf("Instrução %d: 0b%016b\n", i, memory[i]);
     }
 }
+*/

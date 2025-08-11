@@ -3,43 +3,45 @@
 
 #include "syscall.h"
 
-void syscall_routine(RegFile * rf, uint16_t *memory)
+void syscall_routine(uint16_t *memory)
 {
-    uint16_t c = rf->r1;
-    switch (rf->r0)
+    uint16_t c = gen_register[1];
+    switch (gen_register[0])
     {
     case 0:
         free(memory);
+
         exit(0);
     case 1:
         // print string
-        while (memory[c] != 0)
+        while ((char) memory[c] != 0)
         {
             printf("%c", memory[c]);
+            fflush(stdout);
             c++;
         }
-        break;
-    case 2:
-        //print integer
-        while (memory[c] != 0)
-        {
-            printf("%d", memory[c]);
-            c++;
 
-        }
         break;
     case 3:
+        printf("%d", gen_register[1]);
+        fflush(stdout);
+        break;
+    case 2:
         // print string with newline
+        /*
         while (memory[c] != 0)
         {
             printf("%c", memory[c]);
+            fflush(stdout);
             c++;
 
         }
+        */
         printf("\n");
+        fflush(stdout);
         break;
     default:
-        printf("System call code %d doesn't exist\n", rf->pc);
+        printf("System call code %d doesn't exist\n", gen_register[0]);
         free(memory);
         exit(1);
     }
