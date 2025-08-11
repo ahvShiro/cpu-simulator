@@ -6,6 +6,7 @@
 #define __HEADER_SYSCALL_H__
 
 #include "reg.h"
+#include "execute.h"
 
 void syscall_routine(uint16_t *memory);
 

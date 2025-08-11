@@ -5,6 +5,8 @@
 #include "syscall.h"
 #include "reg.h"
 
+size_t size_mem = 0;
+
 void program_loop(uint16_t *memory)
 {
     for (size_t i = pc; i < -1; i++)

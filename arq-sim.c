@@ -14,6 +14,7 @@ int main(int argc, char **argv)
     // tamanho do arquivo
     FILE * fp = fopen(argv[1], "r");
     const uint16_t size = fsize(fp);
+    size_mem = size;
     fclose(fp);
 
     uint16_t *memory = malloc(size * sizeof(uint16_t)); // malloc usa metade do tamanho

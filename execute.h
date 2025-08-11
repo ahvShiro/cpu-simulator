@@ -8,6 +8,8 @@
 #include "decode.h"
 #include "reg.h"
 
+extern size_t size_mem;
+
 void program_loop(uint16_t *memory);
 
 void execute_i(const I_format * ins, uint16_t *memory);
