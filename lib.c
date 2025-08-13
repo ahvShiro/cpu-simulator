@@ -43,6 +43,9 @@ void print_memory(uint16_t * memory, size_t size_mem) {
 
 int fsize(FILE *pf)
 {
+	if(pf == NULL){
+		exit(1);
+	}
 	fseek(pf, 0, SEEK_END);
 	long size = ftell(pf);
 	rewind(pf);
