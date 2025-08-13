@@ -12,6 +12,10 @@ void program_loop(uint16_t *memory)
     for (size_t i = pc; i < -1; i++)
     {
         //printf("PC: %d\n", pc);
+
+        // print_memory(memory, size_mem);
+        // print_reg();
+        
         uint16_t instruction = memory[pc];
         pc++;
         int type_bit = extract_bits(instruction, 15, 16);

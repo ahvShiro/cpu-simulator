@@ -11,6 +11,8 @@
 
 void load_binary_to_memory (const char *fname, void *memory, const uint32_t mem_size);
 
+void print_memory(uint16_t * memory, size_t size);
+
 int fsize(FILE *pf);
 /*
 void print_memory (const uint16_t *memory, uint32_t index);

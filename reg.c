@@ -12,3 +12,11 @@ uint16_t get_reg(uint8_t reg)
 {
     return gen_register[reg];
 }
+
+void print_reg() 
+{
+    for (int i = 0; i < 8; i++) {
+        printf("[%d] ", gen_register[i]);
+    }
+    printf("\n");
+}

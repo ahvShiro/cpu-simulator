@@ -31,6 +31,15 @@ void load_binary_to_memory (const char *fname, void *memory, const uint32_t mem_
 	fclose(fp);
 }
 
+void print_memory(uint16_t * memory, size_t size_mem) {
+    for (int i = 1; i < size_mem; i++) {
+        if (memory[i] == 0) {
+            break;
+        }
+        printf("%d, ", memory[i]);
+    }
+    printf("\n");
+}
 
 int fsize(FILE *pf)
 {
