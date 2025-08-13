@@ -34,6 +34,9 @@ void load_binary_to_memory (const char *fname, void *memory, const uint32_t mem_
 
 int fsize(FILE *pf)
 {
+	if(pf == NULL){
+		exit(1);
+	}
 	fseek(pf, 0, SEEK_END);
 	long size = ftell(pf);
 	rewind(pf);

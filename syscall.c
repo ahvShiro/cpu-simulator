@@ -6,7 +6,7 @@
 void syscall_routine(uint16_t *memory)
 {
     uint16_t c = gen_register[1];
-    uint16_t * tempmem;
+    //uint16_t * tempmem;
     switch (gen_register[0])
     {
     case 0:
@@ -41,7 +41,7 @@ void syscall_routine(uint16_t *memory)
         printf("\n");
         fflush(stdout);
         break;
-
+    /*
     case 4:
         // malloc
         tempmem = realloc(memory, size_mem + c);
@@ -68,6 +68,7 @@ void syscall_routine(uint16_t *memory)
         }
 
         break;
+        */
     default:
         printf("System call code %d doesn't exist\n", gen_register[0]);
         free(memory);

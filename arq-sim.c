@@ -13,6 +13,10 @@ int main(int argc, char **argv)
 
     // tamanho do arquivo
     FILE * fp = fopen(argv[1], "r");
+    if(fp == NULL){
+        printf("File invalid or doesn't exist\n");
+        exit(1);
+    }
     const uint16_t size = fsize(fp);
     size_mem = size;
     fclose(fp);
