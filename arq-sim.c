@@ -2,6 +2,74 @@
 
 #include "lib.h"
 #include "execute.h"
+#include "decode.h"
+#include "fetch.h"
+
+//#define DEBUG
+#ifdef DEBUG
+#define dprint(x) printf x
+#else
+#define dprint(x) do{} while(0)
+#endif
+
+void fetch(Fetch * fet, uint16_t * memory){
+   fet->instruction_value = memory[pc];
+}
+
+void program_loop(uint16_t *memory)
+{
+    while(1)
+    {
+        dprint(("PC: %d\n", pc));
+
+        // print_memory(memory, size_mem);
+        // print_reg();
+        Fetch fet;
+        Decode dec;
+        Execute exe;
+        
+        switch (dec.stage)
+        {
+        case 1:
+            fetch(&fet, memory);
+            
+            break;
+        case 2:
+            fetch(&fet, memory);
+            decode(&fet, &dec);
+            break;
+        case 3:
+            fetch(&fet, memory);
+            decode(&fet, &dec);
+            execute(&dec, &exe);
+            break;
+        default:
+            break;
+        }
+        pc++;
+        /*
+        //decode
+        int type_bit = extract_bits(instruction, 15, 16);
+
+        if(type_bit){
+            I_format ins;
+            create_i_instruction(&ins, instruction);
+            inst.ins = ins;
+            // print_i_instruction(&ins);
+            // execute
+            execute_i(&inst.ins, memory);
+
+        } else {
+            R_format ins;
+            create_r_instruction(&ins, instruction);
+            //print_r_instruction(&ins);
+            execute_r(&ins, memory);
+        }
+        */
+
+    }
+}
+
 
 int main(int argc, char **argv)
 {

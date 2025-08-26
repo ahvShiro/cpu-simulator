@@ -2,6 +2,7 @@
 #define __HEADER_DECODE_H__
 
 #include "lib.h"
+#include "fetch.h"
 
 /*
  * FORMATAÇÃO DA INSTRUÇÃO:
@@ -20,6 +21,15 @@
  *
  * NO TOTAL toda instrução tem 16 bits (0-15)
  */
+
+typedef struct{
+    uint16_t type;
+    uint16_t opcode;
+    uint16_t dest;
+    uint16_t op1;
+    uint16_t op2;
+    uint16_t stage;
+} Decode;
 
 typedef struct {
     // Bit 15 (bit = 0, R)
@@ -47,5 +57,7 @@ void create_i_instruction (I_format *ins, uint16_t instruction);
 void print_r_instruction(R_format *ins);
 
 void print_i_instruction(I_format *ins);
+
+void decode(Fetch *fet, Decode *dec);
 
 #endif

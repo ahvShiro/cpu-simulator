@@ -3,6 +3,11 @@
 //
 #include "decode.h"
 
+void decode(){
+    //TODO: Make the functions below work with a generalized signle struct to help with the process of execution
+}
+
+
 void create_r_instruction (R_format * ins, uint16_t instruction)
 {
     memcpy(ins, &instruction, sizeof(*ins));

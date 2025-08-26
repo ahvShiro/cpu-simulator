@@ -7,33 +7,9 @@
 
 size_t size_mem = 0;
 
-void program_loop(uint16_t *memory)
-{
-    for (size_t i = pc; i < -1; i++)
-    {
-        //printf("PC: %d\n", pc);
-
-        // print_memory(memory, size_mem);
-        // print_reg();
-        
-        uint16_t instruction = memory[pc];
-        pc++;
-        int type_bit = extract_bits(instruction, 15, 16);
-
-        if(type_bit){
-            I_format ins;
-            create_i_instruction(&ins, instruction);
-            // print_i_instruction(&ins);
-            execute_i(&ins, memory);
-
-        } else {
-            R_format ins;
-            create_r_instruction(&ins, instruction);
-            //print_r_instruction(&ins);
-            execute_r(&ins, memory);
-        }
-
-    }
+void execute(Decode * dec, Execute * exe){
+    //TODO: Pass decoded values to be executed
+    do{} while(0);
 }
 
 void execute_r(const R_format * ins, uint16_t *memory)
@@ -164,6 +140,9 @@ void execute_i(const I_format * ins, uint16_t *memory)
         break;
     case 1:
         //printf("jump_cond\n");
+        if(pc < ins->immd){
+            break;
+        }
         if (get_reg(ins->reg) != 0)
         {
             pc = ins->immd;
