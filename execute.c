@@ -7,9 +7,13 @@
 
 size_t size_mem = 0;
 
-void execute(Decode * dec, Execute * exe){
+void execute(Decode * dec, Execute * exe, uint16_t * memory){
     //TODO: Pass decoded values to be executed
-    do{} while(0);
+    if(dec->type){
+        execute_i();
+    } else {
+        execute_r();
+    }
 }
 
 void execute_r(const R_format * ins, uint16_t *memory)
@@ -140,6 +144,7 @@ void execute_i(const I_format * ins, uint16_t *memory)
         break;
     case 1:
         //printf("jump_cond\n");
+
         if(pc < ins->immd){
             break;
         }

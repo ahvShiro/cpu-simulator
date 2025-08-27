@@ -30,7 +30,7 @@ typedef struct{
     uint16_t op2;
     uint16_t stage;
 } Decode;
-
+/*
 typedef struct {
     // Bit 15 (bit = 0, R)
     uint16_t op2 : 3;     // Bits 2-0
@@ -49,14 +49,15 @@ typedef struct {
     uint16_t opcode : 2;  // Bits 14-13
     uint16_t type : 1;
 } I_format;
+*/
 
-void create_r_instruction (R_format *ins, uint16_t instruction);
+void create_r_instruction (Decode *ins, uint16_t instruction);
 
-void create_i_instruction (I_format *ins, uint16_t instruction);
+void create_i_instruction (Decode *ins, uint16_t instruction);
 
-void print_r_instruction(R_format *ins);
+void print_r_instruction(Decode *ins);
 
-void print_i_instruction(I_format *ins);
+void print_i_instruction(Decode *ins);
 
 void decode(Fetch *fet, Decode *dec);
 
